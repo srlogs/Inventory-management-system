@@ -1,5 +1,4 @@
 const express = require('express');
-const config = require('../config/config.js');
 const router = express.Router();
 const user_controller = require('../controller/user');
 
@@ -7,10 +6,11 @@ const user_controller = require('../controller/user');
 
 
 /**
- *  Create new user
+ *  Create new user for registration field
  */
-
 router.post('/newUser', user_controller.createUser);
+
+
 
 
 

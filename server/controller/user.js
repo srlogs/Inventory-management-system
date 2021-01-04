@@ -1,5 +1,8 @@
 const mysql = require('mysql');
 const config = require('../config/config');
+const bcrypt = require('bcrypt');
+const auth_controller = require('./auth');
+const salt = 10;
 
 var con = mysql.createConnection(config);
 
@@ -25,14 +28,33 @@ exports.createUser = function (req, res, next) {
         }
     })
     query = "INSERT INTO user (name, emailid, password, mobile) VALUES ?";
-
-    var values = [
-        [req.body.name, req.body.emailid, req.body.password, req.body.mobile]
-    ];
-    con.query(query, [values], (err, result) => {
-        if (err) {
-            throw err;
-        }
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
+        var values = [
+            [req.body.name, req.body.emailid, hash, req.body.mobile]
+        ];
+        con.query(query, [values], (err, result) => {
+            if (err) {
+                throw err;
+            }
+        })
     })
     res.send("new user created...");
+}
+
+/**
+ *  Get all users
+ */
+exports.getUsers = function (req, res, next) {
+    auth_controller.data.validate(req, res, next);
+
+    if (req.user == null || req.user == undefined) {
+        res.send("invalid user");
+    } else {
+        var query = "SELECT * FROM user";
+
+        con.query(query, (err, result) => {
+            if (err) throw err;
+            res.send(result);
+        })
+    }
 }

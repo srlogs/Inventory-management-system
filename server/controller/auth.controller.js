@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const user_controller = require('./user.js');
+const user_controller = require('./user.controller.js');
 const mysql = require('mysql');
 const config = require('../config/config.js');
 
@@ -43,22 +43,3 @@ exports.authenticate = function (req, res, next) {
         }
     });
 }
-
-/**
- *  Validate access token 
- */
-var methods = {
-    validate: function (req, res, next) {
-        const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1];
-        if (token == null) {
-            return token;
-        }
-        jwt.verify(token, process.env.SECRET_TOKEN, (err, data) => {
-            if (err) throw err;
-            req.user = data.emailid;
-        })
-    }
-}
-
-exports.data = methods;

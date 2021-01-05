@@ -5,27 +5,37 @@ const jwt = require('jsonwebtoken');
 const user_controller = require('./user.controller.js');
 const mysql = require('mysql');
 const config = require('../config/config.js');
+const {
+    Client
+} = require('pg');
 
+const client = new Client({
+    connectionString: config.database,
+    ssl: {
+        rejectUnauthorized: false
+    }
+})
 
-var con = mysql.createConnection(config);
-var methods = {};
+client.connect();
+
+// var con = mysql.createConnection(config);
 
 /**
  *  Authenticate user 
  */
 exports.authenticate = function (req, res, next) {
-    var query = "SELECT emailid, password FROM user WHERE emailid = ?";
+    var query = "SELECT emailid, password FROM users WHERE emailid = $1";
     var values = req.body.emailid;
-    con.query(query, values, (err, result) => {
+    client.query(query, [values], (err, result) => {
         if (err) {
             throw err;
         }
-        if (result.length > 0) {
+        if (result.rowCount > 0) {
             const user = {
                 emailid: req.body.emailid
             };
             const accessToken = jwt.sign(user, process.env.SECRET_TOKEN);
-            bcrypt.compare(req.body.password, result[0].password, (err, isMatch) => {
+            bcrypt.compare(req.body.password, result.rows[0].password, (err, isMatch) => {
                 if (err) {
                     throw err;
                 }

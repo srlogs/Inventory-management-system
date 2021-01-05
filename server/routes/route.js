@@ -5,8 +5,6 @@ const auth_controller = require('../controller/auth.controller');
 const middleware = require('../middleware/index');
 
 
-
-
 /**
  *  Create new user for registration module
  */
@@ -21,9 +19,6 @@ router.post('/authenticate', auth_controller.authenticate);
  *  Get all registered user
  */
 router.get('/getUsers', middleware.authJwt.validate, user_controller.getUsers);
-
-
-
 
 
 module.exports = router;

@@ -32,8 +32,8 @@ exports.create = (req, res) => {
                     message: err.message || "Some error occurred while creating the user."
                 });
             else res.send(data);
-        })
-    })
+        });
+    });
 }
 
 /**
@@ -46,5 +46,5 @@ exports.getUsers = function (req, res, next) {
                 message: err.message || "Some error occurred while retrieving Users."
             });
         else res.send(data);
-    })
+    });
 }

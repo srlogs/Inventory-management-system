@@ -3,7 +3,7 @@ const User = require('../models/user.model');
 
 checkDuplicateEmail = (req, res, next) => {
     User.findOne(req.body.emailid, (err, result) => {
-        if (result.length > 0) {
+        if (result.rowCount != 0) {
             res.status(400).send({
                 message: "user already registered.."
             })

@@ -3,6 +3,7 @@ const router = express.Router();
 const user_controller = require('../controller/user.controller');
 const auth_controller = require('../controller/auth.controller');
 const address_controller = require('../controller/address.controller');
+const product_controller = require('../controller/product.controller');
 const middleware = require('../middleware/index');
 
 
@@ -25,6 +26,11 @@ router.get('/getUsers', middleware.authJwt.validate, user_controller.getUsers);
  *  Adding addresses for user
  */
 router.post('/addAddress', middleware.authJwt.validate, address_controller.create);
+
+/**
+ *  Adding new products
+ */
+router.post('/addProduct', middleware.authJwt.validate, product_controller.create);
 
 
 module.exports = router;

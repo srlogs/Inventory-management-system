@@ -36,5 +36,18 @@ User.findAll = (result) => {
     })
 }
 
+/**
+ *  Get single user data
+ */
+User.findOne = (userEmail, result) => {
+    var query = "SELECT * FROM user WHERE emailid = ?";
+    sql.query(query, [userEmail], (err, res) => {
+        if (err) {
+            throw err;
+        }
+        result(null, res);
+    })
+}
+
 
 module.exports = User;

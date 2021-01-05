@@ -10,7 +10,7 @@ const middleware = require('../middleware/index');
 /**
  *  Create new user for registration module
  */
-router.post('/newUser', user_controller.create);
+router.post('/newUser', middleware.verifySignUp.checkDuplicateEmail, user_controller.create);
 
 /**
  *  Authenticate user for login module
@@ -20,7 +20,9 @@ router.post('/authenticate', auth_controller.authenticate);
 /**
  *  Get all registered user
  */
-router.get('/getUsers', middleware.validate, user_controller.getUsers);
+router.get('/getUsers', middleware.authJwt.validate, user_controller.getUsers);
+
+
 
 
 

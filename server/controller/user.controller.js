@@ -8,6 +8,7 @@ const salt = 10;
  *  Creating and save new user data
  */
 exports.create = (req, res) => {
+
     // Validate request
     if (!req.body) {
         res.status(400).send({

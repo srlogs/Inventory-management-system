@@ -19,8 +19,8 @@ User.create = (newUser, result) => {
         if (err) {
             throw err;
         }
-        if (response) {
-            console.log("new table is created...");
+        if (response.rowCount != null) {
+            console.log("new table for users is created...");
         }
     })
 
@@ -55,8 +55,8 @@ User.findOne = (userEmail, result) => {
         if (err) {
             throw err;
         }
-        if (response) {
-            console.log("new table is created...");
+        if (response.rowCount != null) {
+            console.log("new table for users is created...");
         }
     })
 

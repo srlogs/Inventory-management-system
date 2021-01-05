@@ -2,8 +2,6 @@ require('dotenv').config()
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const user_controller = require('./user.controller.js');
-const mysql = require('mysql');
 const config = require('../config/config.js');
 const {
     Client
@@ -18,12 +16,10 @@ const client = new Client({
 
 client.connect();
 
-// var con = mysql.createConnection(config);
-
 /**
  *  Authenticate user 
  */
-exports.authenticate = function (req, res, next) {
+exports.authenticate = function (req, res) {
     var query = "SELECT emailid, password FROM users WHERE emailid = $1";
     var values = req.body.emailid;
     client.query(query, [values], (err, result) => {

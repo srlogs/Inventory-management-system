@@ -31,3 +31,20 @@ exports.create = (req, res) => {
         }
     })
 }
+
+/**
+ *  Removing the products
+ */
+exports.delete = (req, res) => {
+    Product.delete(req.params.productId, (err, response) => {
+        if (err) {
+            res.status(400).send({
+                message: err.message || "Error while removing the product"
+            });
+        } else {
+            res.status(200).send({
+                message: "product removed..."
+            });
+        }
+    });
+}

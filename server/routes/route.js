@@ -7,45 +7,52 @@ const middleware = require('../middleware/index');
 const auth_controller = require('../controllers/auth.controller');
 const order_controller = require('../controllers/order.controller');
 
+
+
 /**
- *  Creating new user
+ *  Creating new user - (Delivery partner)
  */
 router.post('/newUser', middleware.verifySignUp.checkDuplicateEmail, user_controller.create);
 
 /**
- *  Authenticate user for login
+ *  Authenticate user for login - (Delivery partner)
  */
 router.post('/authenticate', auth_controller.authenticate);
 
 /**
- *  Get all users
+ *  Get all users - (Delivery partner)
  */
 router.get('/getUsers', middleware.authJwt.validate, user_controller.getAll);
 
 /**
- *  Remove user
+ *  Remove user - (Delivery partner)
  */
 router.delete('/user/:userId', middleware.authJwt.validate, user_controller.delete);
 
 /**
- *  Adding customers
+ *  Adding customers - (Shops)
  */
 router.post('/addCustomer', middleware.authJwt.validate, customer_controller.create);
 
 /**
- *  Remove customer
+ *  Remove customer - (Shops)
  */
 router.delete('/customer/:customerId', middleware.authJwt.validate, customer_controller.delete);
 
 /**
- *  Get all customers
+ *  Get all customers - (Shops)
  */
 router.get('/getCustomers', middleware.authJwt.validate, customer_controller.getAll);
 
 /**
- *  Adding new products
+ *  Adding new products - (products)
  */
 router.post('/addProduct', middleware.authJwt.validate, product_controller.create);
+
+/**
+ *  Remove products - (products)
+ */
+router.delete('/product/:productId', middleware.authJwt.validate, product_controller.delete);
 
 /**
  *  Make orders

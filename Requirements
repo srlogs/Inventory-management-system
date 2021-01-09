@@ -1,0 +1,102 @@
+					--- Inventory management system ---
+
+Reports:-
+	*	purchase report
+	* 	sales report
+			-	Daily sales
+			-	monthly sales
+	*	customer order reports
+	*	customer details
+	*	stock - balance
+			- stock (quantity, purchase, GST)
+	*	payment 
+			- receipt 
+				* daily
+				* monthly
+				* weekly
+
+
+System architecture:-
+	*	Admin
+	*	Delivery partner
+	*	shop owners - customers
+
+
+Admin :-
+	
+	Purchase report in the sense income of the product
+		* product details - (multiple)
+			- Name
+			- Quantiy
+			- Price
+			- Total amount
+			- Address ( supplier details )
+
+
+	Sales report
+		-	Direct sales
+				* productId
+				* name
+				* quantity
+				* price
+				* total amount
+				* address
+
+		-	By delivery partner
+				* name
+				* quantity
+				* price
+				* total amount
+				* address
+				* delivery partner details
+
+
+	Orders
+		- 	By delivery partner
+		- 	Direct sales
+		- 	Customer himself
+
+	Stock
+		-	Product stock
+			*	return report
+
+		- 	Stock
+				* total count of the product before sales
+				* after sales
+
+
+
+Delivery partner:-	
+
+
+	NOTE :- DATE IS IMPORTANT
+
+
+
+					Input -> Process -> Output
+
+Input :-
+	Admin entry 
+		- Product name
+		- Quantity
+
+Process :-
+	Depends on sources of sales
+		- Delivery partner
+		- Direct sales
+		- Direct customer orders
+
+Output :-
+		- Stock report
+		- Customer balance report
+		- Delivery partner stock report
+		- Direct customer wise stock report
+
+
+
+
+
+
+
+
+

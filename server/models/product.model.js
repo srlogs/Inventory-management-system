@@ -35,4 +35,17 @@ Product.create = (newProduct, result) => {
     })
 }
 
+/**
+ *  Removing the product
+ */
+Product.delete = (productId, result) => {
+    var query = "DELETE FROM products WHERE id = $1";
+    sql.query(query, [productId], (err, response) => {
+        if (err) {
+            throw err;
+        }
+        result(null, response);
+    });
+}
+
 module.exports = Product;

@@ -1,0 +1,37 @@
+Delivery partner management:
+	-	Admin can view how many delivery partners are there
+	-	Admin can view what is the sales of specific delivary partner
+			*	Sales details
+
+
+Stock management:
+	-	Purchase stock manage
+			* product details
+			* Quantity
+			* price
+			* GST
+
+	-	Sales stock manage
+			* Sales management ( At the end of the day how much products sold )
+			* Daily / monthly / weekly plans
+
+Product managment:
+	-	What kind of product the admin is about to add
+	-	( Add / remove products )
+
+Customer management:
+	-	( Add / remove customers )
+
+Order management:
+	-	Admin directly place the order for customer
+	-	Customer can order by application
+	-	Delivery partner can place the order
+	-	Cancel the order also need to be handle
+
+Return management:
+	-	Handle the product return
+
+Payment management:
+	-	Cash payment 
+	-	Online payment 
+	-	partial payment is need to be handle

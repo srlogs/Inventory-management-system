@@ -22,12 +22,12 @@ router.post('/authenticate', auth_controller.authenticate);
 /**
  *  Get all users - (Delivery partner)
  */
-router.get('/getUsers', middleware.authJwt.validate, user_controller.getAll);
+router.get('/getUsers', middleware.authJwt.validate, middleware.verifyRole.isAdmin, user_controller.getAll);
 
 /**
  *  Remove user - (Delivery partner)
  */
-router.delete('/user/:userId', middleware.authJwt.validate, user_controller.delete);
+router.delete('/user/:userId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, user_controller.delete);
 
 /**
  *  Adding customers - (Shops)
@@ -37,22 +37,22 @@ router.post('/addCustomer', middleware.authJwt.validate, customer_controller.cre
 /**
  *  Remove customer - (Shops)
  */
-router.delete('/customer/:customerId', middleware.authJwt.validate, customer_controller.delete);
+router.delete('/customer/:customerId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, customer_controller.delete);
 
 /**
  *  Get all customers - (Shops)
  */
-router.get('/getCustomers', middleware.authJwt.validate, customer_controller.getAll);
+router.get('/getCustomers', middleware.authJwt.validate, middleware.verifyRole.checkForDeliveryPartner, customer_controller.getAll);
 
 /**
  *  Adding new products - (products)
  */
-router.post('/addProduct', middleware.authJwt.validate, product_controller.create);
+router.post('/addProduct', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.create);
 
 /**
  *  Remove products - (products)
  */
-router.delete('/product/:productId', middleware.authJwt.validate, product_controller.delete);
+router.delete('/product/:productId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.delete);
 
 /**
  *  Make orders

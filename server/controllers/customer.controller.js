@@ -43,10 +43,6 @@ exports.create = (req, res) => {
             }
         }
     })
-
-
-
-
 }
 
 //  Removing customer 

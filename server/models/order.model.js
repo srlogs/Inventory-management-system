@@ -8,6 +8,7 @@ const Order = function (order) {
     this.productid = order.productid;
     this.quantity = order.quantity;
     this.price = order.price;
+    // this.role = order.role;
 }
 
 /**

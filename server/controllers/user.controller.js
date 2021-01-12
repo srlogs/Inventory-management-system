@@ -14,6 +14,16 @@ exports.create = (req, res) => {
         })
     }
 
+    //  setting role
+    var role;
+    if (req.body.role === 'shipper') {
+        role = 2;
+    } else if (req.body.role === 'customer') {
+        role = 3;
+    } else {
+        role = 1;
+    }
+
     //  Hashing the password for security 
     bcrypt.hash(req.body.password, salt, (err, hash) => {
 
@@ -22,7 +32,8 @@ exports.create = (req, res) => {
             name: req.body.name,
             emailid: req.body.emailid,
             password: hash,
-            mobile: req.body.mobile
+            mobile: req.body.mobile,
+            role: role
         });
 
         User.create(user, (err, result) => {

@@ -8,13 +8,14 @@ const User = function (user) {
     this.emailid = user.emailid;
     this.password = user.password;
     this.mobile = user.mobile;
+    this.role = user.role;
 }
 
 /**
  *  User table creation
  */
 tableCreation = () => {
-    var query = "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, emailid VARCHAR(100) NOT NULL, password VARCHAR(150) NOT NULL, mobile VARCHAR(20))";
+    var query = "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, emailid VARCHAR(100) NOT NULL, password VARCHAR(150) NOT NULL, mobile VARCHAR(20), role VARCHAR(10))";
 
     sql.query(query, (err, response) => {
         if (err) {
@@ -33,9 +34,9 @@ tableCreation = () => {
 User.create = (newUser, result) => {
     tableCreation();
 
-    query = "INSERT INTO users (name, emailid, password, mobile) VALUES ($1, $2, $3, $4)";
+    query = "INSERT INTO users (name, emailid, password, mobile, role) VALUES ($1, $2, $3, $4, $5)";
 
-    sql.query(query, [newUser.name, newUser.emailid, newUser.password, newUser.mobile], (err, response) => {
+    sql.query(query, [newUser.name, newUser.emailid, newUser.password, newUser.mobile, newUser.role], (err, response) => {
         if (err) {
             throw err;
         }

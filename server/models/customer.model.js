@@ -7,13 +7,14 @@ const Customer = function (customer) {
     this.shopname = customer.shopname;
     this.address = customer.address;
     this.mobile = customer.mobile;
+    this.userId = customer.userId;
 }
 
 /**
  *  Storing customer data
  */
 Customer.create = (newCustomer, response) => {
-    var query = "CREATE TABLE IF NOT EXISTS customers(id SERIAL PRIMARY KEY, shopname VARCHAR(50) NOT NULL, address TEXT NOT NULL, mobile VARCHAR(50) NOT NULL)";
+    var query = "CREATE TABLE IF NOT EXISTS customers(id SERIAL PRIMARY KEY, shopname VARCHAR(50) NOT NULL, address TEXT NOT NULL, mobile VARCHAR(50) NOT NULL, userid VARCHAR(10) NULL DEFAULT NULL)";
 
     sql.query(query, (err, res) => {
         if (err) {
@@ -24,9 +25,9 @@ Customer.create = (newCustomer, response) => {
         }
     });
 
-    query = "INSERT INTO customers (shopname, address, mobile) VALUES ($1, $2, $3)";
+    query = "INSERT INTO customers (shopname, address, mobile, userid) VALUES ($1, $2, $3, $4)";
 
-    sql.query(query, [newCustomer.shopname, newCustomer.address, newCustomer.mobile], (err, res) => {
+    sql.query(query, [newCustomer.shopname, newCustomer.address, newCustomer.mobile, newCustomer.userId], (err, res) => {
         if (err) {
             throw err;
         }

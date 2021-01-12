@@ -1,4 +1,5 @@
 const Customer = require('../models/customer.model');
+const User = require('../models/user.model');
 
 /**
  *  Adding new customers 
@@ -12,23 +13,40 @@ exports.create = (req, res) => {
         })
     }
 
-    //  New Customer
-    const customer = new Customer({
-        shopname: req.body.shopname,
-        address: req.body.address,
-        mobile: req.body.mobile
-    });
-
-    //  Saving customer data into the database
-    Customer.create(customer, (err, data) => {
+    var userId = null;
+    User.findOne(req.user, (err, response) => {
         if (err) {
-            res.status(400).send({
-                message: err.message || "Error while saving the customer!"
-            });
+            throw err;
         } else {
-            res.send(data);
+
+            if (response.rowCount != 0) {
+                userId = response.rows[0].id;
+
+                //  New Customer
+                const customer = new Customer({
+                    shopname: req.body.shopname,
+                    address: req.body.address,
+                    mobile: req.body.mobile,
+                    userId: userId
+                });
+
+                //  Saving customer data into the database
+                Customer.create(customer, (err, data) => {
+                    if (err) {
+                        res.status(400).send({
+                            message: err.message || "Error while saving the customer!"
+                        });
+                    } else {
+                        res.send(data);
+                    }
+                });
+            }
         }
-    });
+    })
+
+
+
+
 }
 
 //  Removing customer 

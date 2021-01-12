@@ -8,7 +8,13 @@ checkForCustomer = (req, res, next) => {
             if (response.rowCount > 0) {
                 if (response.rows[0].role == 3 || req.user == "admin") {
                     next();
+                } else {
+                    res.status(400).send({
+                        message: "Unauthorized access"
+                    });
                 }
+            } else if (req.user == "admin") {
+                next();
             } else {
                 res.status(400).send({
                     message: "Unauthorized access"
@@ -24,13 +30,19 @@ checkForDeliveryPartner = (req, res, next) => {
             throw err;
         } else {
             if (response.rowCount > 0) {
-                if (response.rows[0].role == 2 || req.user == "admin") {
+                if (response.rows[0].role == 2) {
                     next();
                 } else {
                     res.status(400).send({
                         message: "Unauthorized access"
                     });
                 }
+            } else if (req.user == "admin") {
+                next();
+            } else {
+                res.status(400).send({
+                    message: "Unauthorized access"
+                });
             }
         }
     });

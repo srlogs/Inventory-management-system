@@ -12,7 +12,8 @@ exports.authenticate = (req, res) => {
     //  Admin credentials
     if (req.body.emailid == 'admin' && req.body.password == 'admin@wtm') {
         const user = {
-            emailid: req.body.emailid
+            emailid: req.body.emailid,
+            role: 1
         };
         const accessToken = jwt.sign(user, process.env.TOKEN_SECRET);
         res.json({
@@ -34,7 +35,8 @@ exports.authenticate = (req, res) => {
             }
             if (result.rowCount > 0) {
                 const user = {
-                    emailid: req.body.emailid
+                    emailid: req.body.emailid,
+                    role: result.rows[0].role
                 };
                 const accessToken = jwt.sign(user, process.env.TOKEN_SECRET);
                 bcrypt.compare(req.body.password, result.rows[0].password, (err, isMatch) => {

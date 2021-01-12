@@ -8,7 +8,8 @@ exports.create = (req, res) => {
         customerid: req.body.customerid,
         productid: req.body.productid,
         quantity: req.body.quantity,
-        price: req.body.price
+        price: req.body.price,
+        role: req.user
     });
 
     Order.create(order, (err, response) => {

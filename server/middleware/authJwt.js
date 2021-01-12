@@ -16,6 +16,7 @@ validate = (req, res, next) => {
             });
         }
         req.user = data.emailid;
+        req.role = data.role;
         next();
     });
 }

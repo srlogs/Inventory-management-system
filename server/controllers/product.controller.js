@@ -16,8 +16,10 @@ exports.create = (req, res) => {
     const product = new Product({
         title: req.body.title,
         summary: req.body.summary,
-        price: req.body.price,
-        quantity: req.body.quantity
+        cost: req.body.price,
+        quantity: req.body.quantity,
+        unit: req.body.unit,
+        currency: req.body.currency
     });
 
     //  Adding product data

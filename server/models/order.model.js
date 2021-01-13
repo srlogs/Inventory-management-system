@@ -26,13 +26,15 @@ Order.create = (newOrder, result) => {
         }
     });
 
-    query = "INSERT INTO orders (customerid, productid, quantity, price, date, time, status, vendor) VALUES ($1, $2, $3, $4, current_date, current_time, 1, $5)";
+    query = "INSERT INTO orders (customerid, productid, quantity, price, date, time, status, vendor) VALUES ($1, $2, $3, $4, current_date, current_time, 1, $5) RETURNING id";
 
     sql.query(query, [newOrder.customerid, newOrder.productid, newOrder.quantity, newOrder.price, newOrder.role], (err, response) => {
         if (err) {
             throw err;
         }
+        var id = response.rows[0].id;
         result(null, {
+            id,
             ...newOrder
         });
     });

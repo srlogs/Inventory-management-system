@@ -10,17 +10,22 @@ const sql = require('../models/db');
  */
 exports.authenticate = (req, res) => {
     //  Admin credentials
-    if (req.body.emailid == 'admin' && req.body.password == 'admin@wtm') {
-        const user = {
-            emailid: req.body.emailid,
-            role: 1
-        };
-        const accessToken = jwt.sign(user, process.env.TOKEN_SECRET);
-        res.json({
-            accessToken: accessToken,
-            status: 200
-        });
-
+    if (req.body.emailid == 'admin') {
+        if (req.body.emailid == 'admin' && req.body.password == 'admin@wtm') {
+            const user = {
+                emailid: req.body.emailid,
+                role: 1
+            };
+            const accessToken = jwt.sign(user, process.env.TOKEN_SECRET);
+            res.json({
+                accessToken: accessToken,
+                status: 200
+            });
+        } else {
+            res.json({
+                status: 400
+            })
+        }
     } else {
 
         //  User credentials
@@ -45,7 +50,7 @@ exports.authenticate = (req, res) => {
                     }
                     if (isMatch) {
                         res.json({
-                            accesstoken: accessToken,
+                            accessToken: accessToken,
                             status: 200
                         });
                     } else {

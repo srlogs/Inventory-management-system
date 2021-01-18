@@ -63,10 +63,10 @@ User.findOne = (userEmail, result) => {
 }
 
 /**
- *  Find all users
+ *  Find all users - (Delivery partners)
  */
 User.findAll = (result) => {
-    var query = "SELECT * FROM users";
+    var query = "SELECT name, emailid, mobile, id FROM users WHERE role = '2'";
 
     sql.query(query, (err, response) => {
         if (err) {
@@ -89,5 +89,20 @@ User.delete = (userId, result) => {
         result(null, response);
     })
 }
+
+/**
+ *  Get customers alone from table
+ */
+User.findCustomers = (result) => {
+    var query = "SELECT * FROM users WHERE role = '3'";
+
+    sql.query(query, (err, response) => {
+        if (err) {
+            throw err;
+        }
+        result(null, response);
+    });
+}
+
 
 module.exports = User;

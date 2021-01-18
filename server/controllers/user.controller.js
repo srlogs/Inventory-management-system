@@ -1,5 +1,9 @@
 const User = require('../models/user.model');
+const Customer = require('../models/customer.model');
 const bcrypt = require('bcrypt');
+const {
+    customer
+} = require('../config/role');
 const salt = 10;
 
 /**
@@ -76,4 +80,33 @@ exports.delete = (req, res) => {
             message: "user deleted from table..."
         });
     });
+}
+
+/**
+ *  Get customer data
+ */
+exports.findCustomers = (req, res) => {
+    var customers = [];
+    User.findCustomers((err, data) => {
+        if (err) {
+            res.status(400).send({
+                message: "couldn't parse the data from database"
+            });
+        }
+        customers = data.rows;
+        Customer.findAll((err, response) => {
+            if (err) {
+                res.status(400).send({
+                    message: "couldn't parse the data from database"
+                });
+            }
+            console.log(response);
+            var result = customers.concat(response);
+            console.log(result)
+            res.status(200).send(result);
+        });
+
+    });
+
+
 }

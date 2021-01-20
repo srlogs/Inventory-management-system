@@ -1,0 +1,15 @@
+<div class="title-wrapper">
+  <label>Products</label>
+  <button class="add-button" (click)="addProduct()">
+    <mat-icon><span class="aligned-with-icon">add</span></mat-icon>
+    New
+  </button>
+  <hr>
+</div>
+
+<div class="table-wrapper" *ngIf="isPresent">
+
+</div>
+<div *ngIf="!isPresent" class="content-wrapper">
+  <label>No records found</label>
+</div>

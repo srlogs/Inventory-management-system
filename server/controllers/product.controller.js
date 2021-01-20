@@ -50,3 +50,18 @@ exports.delete = (req, res) => {
         }
     });
 }
+
+/**
+ *  Getting all products 
+ */
+exports.findAll = (req, res) => {
+    Product.findAll((err, response) => {
+        if (err) {
+            res.status(400).send({
+                message: err.message || "Error while parsing the data.."
+            });
+        } else {
+            res.status(200).send(response);
+        }
+    })
+}

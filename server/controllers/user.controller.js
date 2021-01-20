@@ -46,9 +46,34 @@ exports.create = (req, res) => {
                     message: "Erro while storing the user data" || err.message
                 })
             } else {
-                res.send(result);
+                if (role == 3) {
+                    var temp = ' ';
+                    const customer = new Customer({
+                        customername: req.body.name,
+                        shopname: temp,
+                        address: temp,
+                        mobile: req.body.mobile,
+                        emailid: req.body.emailid,
+                        userId: result.id
+                    });
+
+                    Customer.create(customer, (err, data) => {
+                        if (err) {
+                            res.status(400).send({
+                                message: err.message || "Error while saving the customer!"
+                            });
+                        } else {
+                            res.send(data);
+                        }
+                    });
+                } else {
+                    res.send(result);
+                }
+
             }
+
         });
+
     });
 }
 
@@ -100,9 +125,8 @@ exports.findCustomers = (req, res) => {
                     message: "couldn't parse the data from database"
                 });
             }
-            console.log(response);
+
             var result = customers.concat(response);
-            console.log(result)
             res.status(200).send(result);
         });
 

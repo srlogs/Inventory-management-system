@@ -42,7 +42,7 @@ router.delete('/customer/:customerId', middleware.authJwt.validate, middleware.v
 /**
  *  Get all customers - (Shops)
  */
-router.get('/getCustomers', middleware.authJwt.validate, middleware.verifyRole.checkForDeliveryPartner, user_controller.findCustomers);
+router.get('/getCustomers', middleware.authJwt.validate, middleware.verifyRole.checkForDeliveryPartner, customer_controller.getAll);
 
 /**
  *  Adding new products - (products)
@@ -53,6 +53,11 @@ router.post('/addProduct', middleware.authJwt.validate, middleware.verifyRole.is
  *  Remove products - (products)
  */
 router.delete('/product/:productId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.delete);
+
+/**
+ *  Get products - (products)
+ */
+router.get('/getProducts', middleware.authJwt.validate, product_controller.findAll);
 
 /**
  *  Make orders

@@ -1,0 +1,49 @@
+<div class="page-container">
+  <div class="card-container">
+    <div class="card">
+      <div class="card-body">
+        <div class="title-wrapper">
+          <label class="title-wrapper">Login Page</label>
+        </div>
+
+        <div class="card-body-wrapper">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="card-text">
+                <input type="email" id="emailid" placeholder="Enter your Email ID" formControlName="emailid"
+                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailid.errors }">
+                <div *ngIf="submitted && f.emailid.errors" class="invalid-feedback">
+                  <div *ngIf="f.emailid.errors.required">* Email id is required</div>
+                  <div *ngIf="f.emailid.errors.pattern">* Enter valid email id</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="card-text">
+                <input type="password" id="password" placeholder="Enter your password" formControlName="password"
+                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">* Password is required</div>
+                  <div *ngIf="f.password.errors.minlength">* Password must contain minlength of 5</div>
+                </div>
+                <br>
+                <div *ngIf="!isValid" style="color: rgb(218, 60, 60);">* Email Id or password is incorrect</div>
+              </div>
+            </div>
+            <div class="button-wrapper">
+              <button type="submit" class="btn">LOGIN</button>
+            </div>
+          </form>
+
+          <div class="or-wrapper">
+            <label>OR</label>
+          </div>
+
+          <div class="anchor-wrapper">
+            <a routerLink="/register">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.title-wrapper label {
+  font-size: 30px;
+}
+
+.button-wrapper {
+  margin-left: 10px;
+}
+
+.button {
+  background-color: rgb(228, 224, 224);
+  padding: 10px;
+  border: 2px;
+  margin-bottom: 10px;
+}

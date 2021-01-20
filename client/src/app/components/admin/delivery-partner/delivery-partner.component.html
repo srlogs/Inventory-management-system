@@ -1,0 +1,26 @@
+<div class="button-wrapper" *ngIf="toDelete">
+  <button (click)="removeUser()" class="button">Delete</button>
+</div>
+<div class="title-wrapper" *ngIf="!toDelete">
+  <label>Delivery Partners</label>
+  <hr>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name</th>
+      <th scope="col">Email ID</th>
+      <th scope="col">Mobile Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of userData">
+      <th scope="row"><input type="checkbox" name="deliveryPartnerDetails" (click)="chooseUsers($event, user)"></th>
+      <td>{{user.name}}</td>
+      <td>{{user.emailid}}</td>
+      <td>{{user.mobile}}</td>
+    </tr>
+  </tbody>
+</table>

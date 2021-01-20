@@ -34,13 +34,15 @@ tableCreation = () => {
 User.create = (newUser, result) => {
     tableCreation();
 
-    query = "INSERT INTO users (name, emailid, password, mobile, role) VALUES ($1, $2, $3, $4, $5)";
+    query = "INSERT INTO users (name, emailid, password, mobile, role) VALUES ($1, $2, $3, $4, $5) RETURNING id";
 
     sql.query(query, [newUser.name, newUser.emailid, newUser.password, newUser.mobile, newUser.role], (err, response) => {
         if (err) {
             throw err;
         }
+        var id = response.rows[0].id;
         result(null, {
+            id,
             ...newUser
         });
     });
@@ -66,6 +68,7 @@ User.findOne = (userEmail, result) => {
  *  Find all users - (Delivery partners)
  */
 User.findAll = (result) => {
+    tableCreation();
     var query = "SELECT name, emailid, mobile, id FROM users WHERE role = '2'";
 
     sql.query(query, (err, response) => {
@@ -80,6 +83,7 @@ User.findAll = (result) => {
  *  Remove user from table
  */
 User.delete = (userId, result) => {
+    tableCreation();
     var query = "DELETE FROM users WHERE id = $1";
 
     sql.query(query, [userId], (err, response) => {
@@ -94,6 +98,7 @@ User.delete = (userId, result) => {
  *  Get customers alone from table
  */
 User.findCustomers = (result) => {
+    tableCreation();
     var query = "SELECT * FROM users WHERE role = '3'";
 
     sql.query(query, (err, response) => {

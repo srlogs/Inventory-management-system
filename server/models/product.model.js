@@ -12,10 +12,7 @@ const Product = function (product) {
     this.quantity = product.quantity;
 }
 
-/**
- *  Adding new Product
- */
-Product.create = (newProduct, result) => {
+tableCreation = () => {
     var query = "CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, title VARCHAR(50) NOT NULL, summary TEXT, cost VARCHAR(20) NOT NULL, unit VARCHAR(10), currency VARCHAR(10), quantity VARCHAR(20) NOT NULL)";
     sql.query(query, (err, response) => {
         if (err) {
@@ -26,7 +23,14 @@ Product.create = (newProduct, result) => {
         }
     });
 
-    query = "INSERT INTO products (title, summary, cost, unit, currency, quantity) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
+}
+
+/**
+ *  Adding new Product
+ */
+Product.create = (newProduct, result) => {
+
+    var query = "INSERT INTO products (title, summary, cost, unit, currency, quantity) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
     sql.query(query, [newProduct.title, newProduct.summary, newProduct.cost, newProduct.unit, newProduct.currency, newProduct.quantity], (err, response) => {
         if (err) {
             throw err;
@@ -43,6 +47,7 @@ Product.create = (newProduct, result) => {
  *  Removing the product
  */
 Product.delete = (productId, result) => {
+    tableCreation();
     var query = "DELETE FROM products WHERE id = $1";
     sql.query(query, [productId], (err, response) => {
         if (err) {
@@ -50,6 +55,21 @@ Product.delete = (productId, result) => {
         }
         result(null, response);
     });
+}
+
+/**
+ *  Get all products
+ */
+Product.findAll = (result) => {
+    tableCreation();
+
+    var query = "SELECT * FROM products";
+    sql.query(query, (err, response) => {
+        if (err) {
+            throw err;
+        }
+        result(null, response);
+    })
 }
 
 module.exports = Product;

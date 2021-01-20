@@ -43,6 +43,26 @@ exports.create = (req, res) => {
 
 //  Removing customer 
 exports.delete = (req, res) => {
+    Customer.findOne(req.params.customerId, (err, data) => {
+        if (err) {
+            res.status(400).send({
+                message: err.message || "Error while parsing the data!"
+            });
+        } else {
+            if (data.userid != 'admin') {
+                User.delete(data.userid, (err, response) => {
+                    if (err) {
+                        res.status(400).send({
+                            message: err.message || "Erro while deleting the data"
+                        });
+                    } else {
+                        console.log(response)
+                    }
+                });
+            }
+        }
+    });
+
     Customer.delete(req.params.customerId, (err, data) => {
         if (err) {
             res.status(400).send({
@@ -52,6 +72,8 @@ exports.delete = (req, res) => {
             res.send(data);
         }
     });
+
+
 }
 
 //  Get all customers

@@ -1,0 +1,36 @@
+<div class="button-wrapper" *ngIf="toDelete">
+  <button (click)="removeCustomer()" class="button">Delete</button>
+</div>
+<div class="title-wrapper" *ngIf="!toDelete">
+  <label>Customers</label>
+  <button class="add-button" (click)="addCustomer()">
+    <mat-icon><span class="aligned-with-icon">add</span></mat-icon>
+    New
+  </button>
+  <hr>
+</div>
+<div class="table-wrapper" *ngIf="isPresent">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Shop Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">Mobile Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customerData">
+        <th scope="row"><input type="checkbox" name="customerDetails" (click)="chooseCustomers(customer, $event)"></th>
+        <td>{{customer.name}}</td>
+        <td> {{ customer.shopname }} </td>
+        <td>{{customer.emailid}}</td>
+        <td>{{customer.mobile}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!isPresent" class="content-wrapper">
+  <label>No records found</label>
+</div>

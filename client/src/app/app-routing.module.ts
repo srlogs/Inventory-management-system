@@ -8,6 +8,7 @@ import { HomeComponent } from './components/admin/home/home.component';
 import { NewProductComponent } from './components/admin/new-product/new-product.component';
 import { ProductListComponent } from './components/admin/product-list/product-list.component';
 import { SideNavBarComponent } from './components/admin/side-nav-bar/side-nav-bar.component';
+import { UpdateProductComponent } from './components/admin/update-product/update-product.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
@@ -55,6 +56,10 @@ const routes: Routes = [
       {
         path: 'newProduct',
         component: NewProductComponent,
+      },
+      {
+        path: 'updateProduct',
+        component: UpdateProductComponent,
       },
     ],
   },

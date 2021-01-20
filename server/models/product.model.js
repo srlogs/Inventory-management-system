@@ -8,12 +8,12 @@ const Product = function (product) {
     this.summary = product.summary;
     this.cost = product.cost;
     this.unit = product.unit;
-    this.currency = product.currency;
     this.quantity = product.quantity;
+    this.stock = product.stock;
 }
 
-tableCreation = () => {
-    var query = "CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, title VARCHAR(50) NOT NULL, summary TEXT, cost VARCHAR(20) NOT NULL, unit VARCHAR(10), currency VARCHAR(10), quantity VARCHAR(20) NOT NULL)";
+function tableCreation() {
+    var query = "CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, title VARCHAR(50) NOT NULL, summary TEXT, cost VARCHAR(20) NOT NULL, unit VARCHAR(50), quantity VARCHAR(50) NOT NULL, stock VARCHAR(50) NULL DEFAULT 0)";
     sql.query(query, (err, response) => {
         if (err) {
             throw err;
@@ -30,8 +30,10 @@ tableCreation = () => {
  */
 Product.create = (newProduct, result) => {
 
-    var query = "INSERT INTO products (title, summary, cost, unit, currency, quantity) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
-    sql.query(query, [newProduct.title, newProduct.summary, newProduct.cost, newProduct.unit, newProduct.currency, newProduct.quantity], (err, response) => {
+    tableCreation();
+
+    query = "INSERT INTO products (title, summary, cost, unit, quantity, stock) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
+    sql.query(query, [newProduct.title, newProduct.summary, newProduct.cost, newProduct.unit, newProduct.quantity, newProduct.stock], (err, response) => {
         if (err) {
             throw err;
         }
@@ -68,7 +70,20 @@ Product.findAll = (result) => {
         if (err) {
             throw err;
         }
-        result(null, response);
+        result(null, response.rows);
+    })
+}
+
+/**
+ *  Get units from table
+ */
+Product.findUnits = (result) => {
+    var query = "SELECT * FROM units";
+    sql.query(query, (err, response) => {
+        if (err) {
+            throw err;
+        }
+        result(null, response.rows);
     })
 }
 

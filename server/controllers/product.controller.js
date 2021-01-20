@@ -12,14 +12,17 @@ exports.create = (req, res) => {
         });
     }
 
+    console.log(req.body.stock)
+
+
     //  New product data
     const product = new Product({
         title: req.body.title,
         summary: req.body.summary,
-        cost: req.body.price,
+        cost: req.body.cost,
         quantity: req.body.quantity,
         unit: req.body.unit,
-        currency: req.body.currency
+        stock: req.body.stock == '' ? 0 : req.body.stock
     });
 
     //  Adding product data
@@ -62,6 +65,21 @@ exports.findAll = (req, res) => {
             });
         } else {
             res.status(200).send(response);
+        }
+    })
+}
+
+/**
+ *  Get units
+ */
+exports.findUnits = (req, res) => {
+    Product.findUnits((err, data) => {
+        if (err) {
+            res.status(400).send({
+                message: err.message || "Error while parsing the data..."
+            });
+        } else {
+            res.send(data);
         }
     })
 }

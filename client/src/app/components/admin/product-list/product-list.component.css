@@ -35,3 +35,23 @@ mat-icon {
 .content-wrapper {
   text-align: center;
 }
+
+.button-wrapper {
+  margin-left: 10px;
+}
+
+.button {
+  background-color: rgb(228, 224, 224);
+  padding: 10px;
+  border: 2px;
+  margin-bottom: 10px;
+}
+
+.button-update {
+  background-color: rgb(26, 170, 26);
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  border-radius: 5px;
+}

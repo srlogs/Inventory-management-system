@@ -11,7 +11,6 @@ export class UserServiceService {
 
   getHeaders(): any {
     var auth_token = localStorage.getItem('accessToken');
-    console.log('access token', auth_token);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${auth_token}`,
@@ -82,10 +81,37 @@ export class UserServiceService {
   }
 
   /**
-   *  Get Products
+   * Get Products
    */
   getProducts(): Observable<any> {
     return this.http.get('http://localhost:3000/api/getProducts', {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
+   * Get Units
+   */
+  getUnits(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/getUnits', {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
+   * Add product
+   */
+  addProduct(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/api/addProduct', data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
+   * Remove the product
+   */
+  removeProduct(data: any): Observable<any> {
+    return this.http.delete(`http://localhost:3000/api/product/${data}`, {
       headers: this.getHeaders(),
     });
   }

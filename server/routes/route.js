@@ -60,6 +60,11 @@ router.delete('/product/:productId', middleware.authJwt.validate, middleware.ver
 router.get('/getProducts', middleware.authJwt.validate, product_controller.findAll);
 
 /**
+ *  Get units - (units for products)
+ */
+router.get('/getUnits', middleware.authJwt.validate, product_controller.findUnits);
+
+/**
  *  Make orders
  */
 router.post('/addOrder', middleware.authJwt.validate, order_controller.create);

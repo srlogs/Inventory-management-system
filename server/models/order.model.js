@@ -14,7 +14,7 @@ const Order = function (order) {
 /**
  *  Table creation
  */
-tableCreation = () => {
+function tableCreation() {
     var query = "CREATE TABLE IF NOT EXISTS orders(id SERIAL PRIMARY KEY, customerid INTEGER NOT NULL, productid INTEGER NOT NULL, quantity VARCHAR(50) NOT NULL, price VARCHAR(50) NOT NULL, date VARCHAR(50), time VARCHAR(50), status VARCHAR(10), vendor VARCHAR(50))";
 
     sql.query(query, (err, res) => {
@@ -32,7 +32,7 @@ tableCreation = () => {
  */
 Order.create = (newOrder, result) => {
 
-
+    tableCreation();
     var query = "INSERT INTO orders (customerid, productid, quantity, price, date, time, status, vendor) VALUES ($1, $2, $3, $4, current_date, current_time, 1, $5) RETURNING id";
 
     sql.query(query, [newOrder.customerid, newOrder.productid, newOrder.quantity, newOrder.price, newOrder.role], (err, response) => {

@@ -1,1 +1,82 @@
-<p>new-product works!</p>
+<div class="title-wrapper">
+  <label>New Product</label>
+  <hr>
+</div>
+
+<div class="page-content-wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <label class="title col-lg-3">Product Name</label>
+      <div class="form-group col">
+        <input type="text" name="productname" formControlName="productname" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.productname.errors }">
+        <div *ngIf="submitted && f.productname.errors" class="invalid-feedback">
+          <div *ngIf="f.productname.errors.required">* Product name is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="title col-lg-3">Description</label>
+      <div class="form-group col">
+        <textarea type="text" name="summary" formControlName="summary" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.summary.errors }">
+        </textarea>
+        <div *ngIf="submitted && f.summary.errors" class="invalid-feedback">
+          <div *ngIf="f.summary.errors.required">* Description is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="title col-lg-3">Selling Price</label>
+      <div class="form-group col">
+        <input type="number" name="sellingprice" formControlName="sellingprice" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.sellingprice.errors }">
+        <div *ngIf="submitted && f.sellingprice.errors" class="invalid-feedback">
+          <div *ngIf="f.sellingprice.errors.required">* Price is required</div>
+          <div *ngIf="f.sellingprice.errors.pattern">* Enter valid price</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="title col-lg-3">Quantity</label>
+      <div class="form-group col">
+        <input type="number" name="quantity" formControlName="quantity" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }">
+        <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+          <div *ngIf="f.quantity.errors.required">* Quantity is required</div>
+          <div *ngIf="f.quantity.errors.pattern">* Enter valid quantity</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="title col-lg-3">Unit</label>
+      <div class="form-group col">
+        <input type="text" name="unit" list="unitData" formControlName="unit" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.unit.errors }">
+        <div *ngIf="submitted && f.unit.errors" class="invalid-feedback">
+          <div *ngIf="f.unit.errors.required">* Unit is required</div>
+          <div *ngIf="f.unit.errors.pattern">* Enter valid unit</div>
+        </div>
+        <datalist id="unitData">
+          <div *ngFor="let unit of units">
+            <option value="{{unit.name}}"></option>
+          </div>
+        </datalist>
+      </div>
+    </div>
+    <div class="row">
+      <label class="title col-lg-3">Initial stock</label>
+      <div class="form-group col">
+        <input type="number" name="stock" formControlName="stock" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.stock.errors }">
+        <div *ngIf="submitted && f.stock.errors" class="invalid-feedback">
+          <div *ngIf="f.stock.errors.pattern">* Enter valid quantity</div>
+        </div>
+      </div>
+    </div>
+    <div class="button-wrapper">
+      <button type="submit" class="button button-save">Save</button>
+      <button class="button button-cancel" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -34,6 +34,7 @@
           [ngClass]="{ 'is-invalid': submitted && f.emailid.errors }">
         <div *ngIf="submitted && f.emailid.errors" class="invalid-feedback">
           <div *ngIf="f.emailid.errors.required">* Email ID is required</div>
+          <div *ngIf="f.emailid.errors.pattern">* Enter valid emailid</div>
         </div>
       </div>
     </div>
@@ -44,6 +45,7 @@
           [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
         <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
           <div *ngIf="f.mobile.errors.required">* Mobile number is required</div>
+          <div *ngIf="f.mobile.errors.pattern">* Enter valid mobile number</div>
         </div>
       </div>
     </div>

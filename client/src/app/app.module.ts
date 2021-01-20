@@ -18,6 +18,7 @@ import { CustomersComponent } from './components/admin/customers/customers.compo
 import { AddCustomerComponent } from './components/admin/add-customer/add-customer.component';
 import { ProductListComponent } from './components/admin/product-list/product-list.component';
 import { NewProductComponent } from './components/admin/new-product/new-product.component';
+import { UpdateProductComponent } from './components/admin/update-product/update-product.component';
 
 
 
@@ -33,7 +34,8 @@ import { NewProductComponent } from './components/admin/new-product/new-product.
     CustomersComponent,
     AddCustomerComponent,
     ProductListComponent,
-    NewProductComponent
+    NewProductComponent,
+    UpdateProductComponent
    
   ],
   imports: [

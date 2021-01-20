@@ -14,7 +14,7 @@ const User = function (user) {
 /**
  *  User table creation
  */
-tableCreation = () => {
+function tableCreation() {
     var query = "CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, emailid VARCHAR(100) NOT NULL, password VARCHAR(150) NOT NULL, mobile VARCHAR(20), role VARCHAR(10))";
 
     sql.query(query, (err, response) => {

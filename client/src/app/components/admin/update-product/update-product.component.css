@@ -1,0 +1,38 @@
+.title-wrapper label {
+  font-size: 20px;
+}
+
+input[type=text],
+textarea,
+input[type=number] {
+  max-width: 75%;
+}
+
+.title {
+  margin-top: 5px;
+}
+
+.button-wrapper button {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.button-save {
+  background-color: rgb(66, 135, 245);
+}
+
+.button-cancel {
+  margin-left: 20px;
+  background-color: rgb(94, 92, 92);
+  color: black;
+}
+
+.footer {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}

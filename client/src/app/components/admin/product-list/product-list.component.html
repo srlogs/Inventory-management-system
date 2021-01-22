@@ -1,5 +1,7 @@
 <div class="button-wrapper" *ngIf="toDelete">
-  <button (click)="removeProduct()" class="button">Delete</button>
+  <button (click)="open()" class="button">
+    <mat-icon><span class="aligned-with-icon">restore_from_trash</span></mat-icon>Delete
+  </button>
 </div>
 
 <div class="title-wrapper" *ngIf="!toDelete">
@@ -18,9 +20,8 @@
         <th scope="col"></th>
         <th scope="col">Name</th>
         <th scope="col">Cost</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Unit</th>
-        <th scope="col">Stock on hand</th>
+        <th scope="col">Discount</th>
+        <th scope="col">gst</th>
         <th scope="col">Update product</th>
       </tr>
     </thead>
@@ -29,14 +30,32 @@
         <th scope="row"><input type="checkbox" name="productDetails" (click)="chooseProducts(product, $event)"></th>
         <td>{{product.title}}</td>
         <td> {{ product.cost }} </td>
-        <td> {{ product.quantity}} </td>
-        <td> {{ product.unit }} </td>
-        <td>{{product.stock}}</td>
-        <td><button class="button-update" (click)="updateProduct()">Update</button></td>
+        <td> {{ product.discount }} </td>
+        <td> {{ product.gst }} </td>
+        <td class="button-col"><button class="button-update" (click)="updateProduct(product)">Update</button></td>
       </tr>
     </tbody>
   </table>
 </div>
 <div *ngIf="!isPresent" class="content-wrapper">
   <label>No records found</label>
+</div>
+
+<div class="modal fade my-modal " tabindex="-1" role="dialog" #myModal>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirm to delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-confirm" (click)="removeProduct()">Confirm</button>
+        <button type="button" class="btn btn-close" (click)="close()">Close
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

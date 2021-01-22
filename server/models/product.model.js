@@ -7,13 +7,12 @@ const Product = function (product) {
     this.title = product.title;
     this.summary = product.summary;
     this.cost = product.cost;
-    this.unit = product.unit;
-    this.quantity = product.quantity;
-    this.stock = product.stock;
+    this.discount = product.discount;
+    this.gst = product.gst;
 }
 
 function tableCreation() {
-    var query = "CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, title VARCHAR(50) NOT NULL, summary TEXT, cost VARCHAR(20) NOT NULL, unit VARCHAR(50), quantity VARCHAR(50) NOT NULL, stock VARCHAR(50) NULL DEFAULT 0)";
+    var query = "CREATE TABLE IF NOT EXISTS products (id SERIAL PRIMARY KEY, title VARCHAR(50) NOT NULL, summary TEXT, cost VARCHAR(20) NOT NULL,  discount VARCHAR(50) NULL DEFAULT 0, gst VARCHAR(50) NULL DEFAULT NULL)";
     sql.query(query, (err, response) => {
         if (err) {
             throw err;
@@ -32,8 +31,8 @@ Product.create = (newProduct, result) => {
 
     tableCreation();
 
-    query = "INSERT INTO products (title, summary, cost, unit, quantity, stock) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
-    sql.query(query, [newProduct.title, newProduct.summary, newProduct.cost, newProduct.unit, newProduct.quantity, newProduct.stock], (err, response) => {
+    query = "INSERT INTO products (title, summary, cost, discount, gst) VALUES ($1, $2, $3, $4, $5) RETURNING id";
+    sql.query(query, [newProduct.title, newProduct.summary, newProduct.cost, newProduct.discount, newProduct.gst], (err, response) => {
         if (err) {
             throw err;
         }
@@ -85,6 +84,22 @@ Product.findUnits = (result) => {
         }
         result(null, response.rows);
     })
+}
+
+/**
+ *  Updating data
+ */
+Product.update = (product, result) => {
+    tableCreation();
+
+    var query = "UPDATE products SET title = $2, summary = $3, cost = $4, discount = $5, gst = $6 WHERE id = $1";
+
+    sql.query(query, [product.id, product.title, product.summary, product.cost, product.discount, product.gst], (err, response) => {
+        if (err) {
+            throw err;
+        }
+        result(null, response);
+    });
 }
 
 module.exports = Product;

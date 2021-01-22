@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +16,9 @@ export class ProductListComponent implements OnInit {
   toDelete: boolean = false;
   constructor(
     private userService: UserServiceService,
-    private router: Router
+    private router: Router,
+    private elementRef: ElementRef,
+    private sharedService: SharedService
   ) {}
 
   chooseProducts(product: any, e: any) {
@@ -32,6 +36,22 @@ export class ProductListComponent implements OnInit {
       this.toDelete = false;
     }
   }
+  close() {
+    let tag = this.elementRef.nativeElement.querySelector('.modal');
+    tag.classList.remove('show');
+    setTimeout(() => {
+      let mydiv = this.elementRef.nativeElement.querySelector('.modal');
+      mydiv.style.width = '0';
+    }, 75);
+  }
+
+  open() {
+    let tag = this.elementRef.nativeElement.querySelector('.modal');
+    tag.classList.add('show');
+    let mydiv = this.elementRef.nativeElement.querySelector('.modal');
+    mydiv.style.width = '100vw';
+    mydiv.style.align = 'center';
+  }
 
   removeProduct() {
     for (let i = 0; i < this.removeProductData.length; ++i) {
@@ -39,6 +59,7 @@ export class ProductListComponent implements OnInit {
         .removeProduct(this.removeProductData[i].id)
         .subscribe((response) => {
           console.log(response);
+          this.close();
         });
     }
     this.ngOnInit();
@@ -50,7 +71,8 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/admin/sidenav/newProduct']);
   }
 
-  updateProduct() {
+  updateProduct(data: any) {
+    this.sharedService.setProductData(data);
     this.router.navigate(['/admin/sidenav/updateProduct']);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
@@ -15,7 +15,8 @@ export class CustomersComponent implements OnInit {
   isPresent: boolean = false;
   constructor(
     private userService: UserServiceService,
-    private router: Router
+    private router: Router,
+    private elementRef: ElementRef
   ) {}
 
   chooseCustomers(customer: any, e: any) {
@@ -32,13 +33,28 @@ export class CustomersComponent implements OnInit {
       this.removeCustomerData.splice(index, 1);
     }
 
-    console.log(this.removeCustomerData.length);
-    console.log(this.removeCustomerData);
     if (this.removeCustomerData.length > 0) {
       this.toDelete = true;
     } else {
       this.toDelete = false;
     }
+  }
+
+  close() {
+    let tag = this.elementRef.nativeElement.querySelector('.modal');
+    tag.classList.remove('show');
+    setTimeout(() => {
+      let mydiv = this.elementRef.nativeElement.querySelector('.modal');
+      mydiv.style.width = '0';
+    }, 75);
+  }
+
+  open() {
+    let tag = this.elementRef.nativeElement.querySelector('.modal');
+    tag.classList.add('show');
+    let mydiv = this.elementRef.nativeElement.querySelector('.modal');
+    mydiv.style.width = '100vw';
+    mydiv.style.align = 'center';
   }
 
   removeCustomer() {
@@ -48,6 +64,7 @@ export class CustomersComponent implements OnInit {
         .removeCustomers(this.removeCustomerData[i].id)
         .subscribe((response) => {
           console.log(response);
+          this.close();
         });
     }
     this.ngOnInit();

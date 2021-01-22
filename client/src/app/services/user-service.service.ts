@@ -117,6 +117,15 @@ export class UserServiceService {
   }
 
   /**
+   * Update product
+   */
+  updateProduct(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/api/updateProduct', data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
    * Ending the session by removing the accessToken
    */
   logout() {

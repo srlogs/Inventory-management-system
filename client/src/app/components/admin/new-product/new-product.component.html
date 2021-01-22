@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <label class="title col-lg-3">Quantity</label>
       <div class="form-group col">
         <input type="number" name="quantity" formControlName="quantity" class="form-control"
@@ -63,8 +63,29 @@
           </div>
         </datalist>
       </div>
+    </div> -->
+    <div class="row">
+      <label class="title col-lg-3">Discount (in percentage %)</label>
+      <div class="form-group col">
+        <input type="number" name="discount" formControlName="discount" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.discount.errors }">
+        <div *ngIf="submitted && f.discount.errors" class="invalid-feedback">
+          <div *ngIf="f.discount.errors.pattern">* Enter valid discount</div>
+        </div>
+      </div>
     </div>
     <div class="row">
+      <label class="title col-lg-3">GST (in percentage %)</label>
+      <div class="form-group col">
+        <input type="number" name="GST" formControlName="gst" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.gst.errors }">
+        <div *ngIf="submitted && f.gst.errors" class="invalid-feedback">
+          <div *ngIf="f.gst.errors.required">* GST is required</div>
+          <div *ngIf="f.gst.errors.pattern">* Enter valid GST</div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
       <label class="title col-lg-3">Initial stock</label>
       <div class="form-group col">
         <input type="number" name="stock" formControlName="stock" class="form-control"
@@ -73,7 +94,7 @@
           <div *ngIf="f.stock.errors.pattern">* Enter valid quantity</div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="button-wrapper">
       <button type="submit" class="button button-save">Save</button>
       <button class="button button-cancel" (click)="onCancel()">Cancel</button>

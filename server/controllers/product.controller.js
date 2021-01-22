@@ -12,17 +12,14 @@ exports.create = (req, res) => {
         });
     }
 
-    console.log(req.body.stock)
-
 
     //  New product data
     const product = new Product({
         title: req.body.title,
         summary: req.body.summary,
         cost: req.body.cost,
-        quantity: req.body.quantity,
-        unit: req.body.unit,
-        stock: req.body.stock == '' ? 0 : req.body.stock
+        discount: req.body.discount == '' ? 0 : req.body.discount,
+        gst: req.body.gst
     });
 
     //  Adding product data
@@ -50,6 +47,31 @@ exports.delete = (req, res) => {
             res.status(200).send({
                 message: "product removed..."
             });
+        }
+    });
+}
+
+/**
+ *  Updating product data
+ */
+exports.update = (req, res) => {
+
+    const product = {
+        id: req.body.id,
+        title: req.body.title,
+        summary: req.body.summary,
+        cost: req.body.cost,
+        discount: req.body.discount,
+        gst: req.body.gst
+    }
+
+    Product.update(product, (err, response) => {
+        if (err) {
+            res.status(500).send({
+                message: err.message || "internal server error"
+            });
+        } else {
+            res.status(200).send(response);
         }
     });
 }

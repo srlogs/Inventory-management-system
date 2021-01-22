@@ -1,26 +1,54 @@
 <div class="button-wrapper" *ngIf="toDelete">
-  <button (click)="removeUser()" class="button">Delete</button>
+  <button (click)="open()" class="button">
+    <mat-icon><span class="aligned-with-icon">restore_from_trash</span></mat-icon>Delete
+  </button>
 </div>
 <div class="title-wrapper" *ngIf="!toDelete">
   <label>Delivery Partners</label>
   <hr>
 </div>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Name</th>
-      <th scope="col">Email ID</th>
-      <th scope="col">Mobile Number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of userData">
-      <th scope="row"><input type="checkbox" name="deliveryPartnerDetails" (click)="chooseUsers($event, user)"></th>
-      <td>{{user.name}}</td>
-      <td>{{user.emailid}}</td>
-      <td>{{user.mobile}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-wrapper" *ngIf="isPresent">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">Mobile Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userData">
+        <th scope="row"><input type="checkbox" name="deliveryPartnerDetails" (click)="chooseUsers($event, user)"></th>
+        <td>{{user.name}}</td>
+        <td>{{user.emailid}}</td>
+        <td>{{user.mobile}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="!isPresent" class="content-wrapper">
+  <label>No records found</label>
+</div>
+
+
+<div class="modal fade my-modal " tabindex="-1" role="dialog" #myModal>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Confirm to delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-confirm" (click)="removeUser()">Confirm</button>
+        <button type="button" class="btn btn-close" (click)="close()">Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

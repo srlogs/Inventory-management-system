@@ -5,12 +5,18 @@ html,
 body,
 app-root {
   height: 100%;
-  margin-left: 0;
 }
+
 
 body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-dialog-container#modal-component {
+  border: 3px solid #262626;
+  border-radius: 11px;
+  background-color: #1a1a1a;
+  max-width: 50%;
+  max-height: 50%;
+}

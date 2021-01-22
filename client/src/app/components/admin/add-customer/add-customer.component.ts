@@ -48,7 +48,7 @@ export class AddCustomerComponent implements OnInit {
     };
     this.userService.addCustomers(data).subscribe((response) => {
       console.log(response);
-      window.location.reload();
+      this.router.navigate(['/admin/sidenav/customers']);
     });
   }
 

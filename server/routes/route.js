@@ -60,6 +60,11 @@ router.delete('/product/:productId', middleware.authJwt.validate, middleware.ver
 router.get('/getProducts', middleware.authJwt.validate, product_controller.findAll);
 
 /**
+ *  Update products - (products)
+ */
+router.post('/updateProduct', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.update);
+
+/**
  *  Get units - (units for products)
  */
 router.get('/getUnits', middleware.authJwt.validate, product_controller.findUnits);

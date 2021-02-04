@@ -82,7 +82,6 @@ export class AddStockComponent implements OnInit {
       date: date.toDateString(),
     };
     this.userService.getOneProductStock(data).subscribe((data) => {
-      console.log(data);
       if (data.data === 'empty') {
         this.isStockDataEmpty = true;
         this.f.initialStock.setValue(0);

@@ -28,6 +28,11 @@
     <label class="col-lg-3 label-title">GST</label>
     <label class="col label-data">{{productData.gst}} %</label>
   </div>
+  <label class="data-title">Stock Information</label>
+  <div class="row">
+    <label class="col-lg-3 label-title">Today's Stock</label>
+    <label class="col label-data"> {{ stockData }} </label>
+  </div>
   <div class="row button-wrapper">
     <button class="button btn-delete" (click)="removeProduct()">Delete</button>
     <button class="button btn-cancel" (click)="onCancel()">Cancel</button>

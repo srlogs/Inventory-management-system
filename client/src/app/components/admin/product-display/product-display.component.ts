@@ -11,6 +11,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 })
 export class ProductDisplayComponent implements OnInit {
   productData: any = [];
+  stockData;
   constructor(
     private sharedService: SharedService,
     location: PlatformLocation,
@@ -59,6 +60,18 @@ export class ProductDisplayComponent implements OnInit {
     } else {
       this.getProduct();
     }
+    var date = new Date();
+    const data = {
+      productid: this.productData.id,
+      date: date.toDateString(),
+    };
+    this.userService.getOneProductStock(data).subscribe((data) => {
+      if (data.data === 'empty') {
+        this.stockData = 0;
+      } else {
+        this.stockData = data.initialstock;
+      }
+    });
     console.log(this.productData);
   }
 

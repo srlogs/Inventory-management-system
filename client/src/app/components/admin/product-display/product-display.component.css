@@ -1,0 +1,80 @@
+.title {
+  font-size: 25px;
+}
+
+.edit-button {
+  margin-right: 10px;
+  float: right;
+  border: none;
+  background-color: rgb(66, 135, 245);
+  color: white;
+  padding-left: 10px;
+  padding-right: 15px;
+  border-radius: 5px;
+}
+
+.edit-btn {
+  width: 100px;
+}
+
+.btn-group {
+  float: right;
+}
+
+.label-title,
+.label-data {
+  margin-top: 15px;
+
+}
+
+.aligned-with-icon {
+  font-size: 1.0em;
+  /* vertical-align: middle; */
+  margin-top: 5px;
+  margin-right: 10px;
+  padding-top: 9px;
+}
+
+mat-icon {
+  font-size: 20px;
+  height: 23px;
+  /* width: 20px; */
+}
+
+.label-data {
+  max-width: 70%;
+  font-size: 15px;
+}
+
+.label-title {
+  color: grey;
+  font-size: 14px;
+}
+
+.data-title {
+  font-size: 16px;
+  margin-top: 30px;
+}
+
+.button-wrapper {
+  margin-top: 50px;
+}
+
+.btn-cancel {
+  margin-left: 30px;
+}
+
+.btn-delete {
+  margin-left: 10px;
+  background-color: rgb(245, 86, 86);
+  color: white;
+}
+
+.button {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}

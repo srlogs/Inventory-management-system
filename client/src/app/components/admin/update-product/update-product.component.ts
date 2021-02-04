@@ -23,6 +23,7 @@ export class UpdateProductComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     location.onPopState(() => {
+      this.sharedService.setProductData(this.productData);
       sessionStorage.removeItem('productData');
     });
   }

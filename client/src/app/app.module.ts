@@ -21,7 +21,14 @@ import { NewProductComponent } from './components/admin/new-product/new-product.
 import { UpdateProductComponent } from './components/admin/update-product/update-product.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { StocksComponent } from './components/admin/stocks/stocks.component';
+import { ProductDisplayComponent } from './components/admin/product-display/product-display.component';
+import { AddStockComponent } from './components/admin/add-stock/add-stock.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +43,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProductListComponent,
     NewProductComponent,
     UpdateProductComponent,
+    StocksComponent,
+    ProductDisplayComponent,
+    AddStockComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +59,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatSliderModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

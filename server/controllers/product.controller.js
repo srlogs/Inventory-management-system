@@ -92,6 +92,21 @@ exports.findAll = (req, res) => {
 }
 
 /**
+ *  Get single product
+ */
+exports.findOne = (req, res) => {
+    Product.findOne(req.params.productId, (err, response) => {
+        if (err) {
+            res.status(400).send({
+                message: err.message || "Error while parsing the data..."
+            });
+        } else {
+            res.status(200).send(response);
+        }
+    });
+}
+
+/**
  *  Get units
  */
 exports.findUnits = (req, res) => {

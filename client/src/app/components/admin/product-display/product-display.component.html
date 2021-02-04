@@ -1,0 +1,35 @@
+<!-- <div *ngFor="let product of productData"> -->
+<div class="title-wrapper">
+  <label class="title"> {{ productData.title}} </label>
+  <div class="btn-group mr-2">
+    <button class="btn btn-sm btn-outline-secondary edit-btn" (click)="updateProduct()">
+      Edit
+    </button>
+    <button class="btn btn-sm btn-outline-secondary" (click)="adjustStock()">Adjust stock</button>
+  </div>
+  <hr>
+</div>
+
+<div class="page-content-wrapper">
+  <div class="row">
+    <label class="col-lg-3 label-title">Description</label>
+    <label class="col label-data">{{productData.summary}}</label>
+  </div>
+  <label class="data-title">Sales Information</label>
+  <div class="row">
+    <label class="col-lg-3 label-title">Selling Price</label>
+    <label class="col label-data">{{productData.cost}}</label>
+  </div>
+  <div class="row">
+    <label class="col-lg-3 label-title">Discount</label>
+    <label class="col label-data">{{productData.discount}} %</label>
+  </div>
+  <div class="row">
+    <label class="col-lg-3 label-title">GST</label>
+    <label class="col label-data">{{productData.gst}} %</label>
+  </div>
+  <div class="row button-wrapper">
+    <button class="button btn-delete" (click)="removeProduct()">Delete</button>
+    <button class="button btn-cancel" (click)="onCancel()">Cancel</button>
+  </div>
+</div>

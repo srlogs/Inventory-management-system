@@ -21,6 +21,11 @@ export class ProductListComponent implements OnInit {
     private sharedService: SharedService
   ) {}
 
+  onClick(data: any) {
+    this.sharedService.setProductData(data);
+    this.router.navigate(['/admin/sidenav/productDisplay']);
+  }
+
   chooseProducts(product: any, e: any) {
     if (e.target.checked) {
       this.removeProductData.push(product);
@@ -36,6 +41,7 @@ export class ProductListComponent implements OnInit {
       this.toDelete = false;
     }
   }
+
   close() {
     let tag = this.elementRef.nativeElement.querySelector('.modal');
     tag.classList.remove('show');

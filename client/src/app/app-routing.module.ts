@@ -1,14 +1,16 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddCustomerComponent } from './components/admin/add-customer/add-customer.component';
+import { AddStockComponent } from './components/admin/add-stock/add-stock.component';
 import { CustomersComponent } from './components/admin/customers/customers.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { DeliveryPartnerComponent } from './components/admin/delivery-partner/delivery-partner.component';
 import { HomeComponent } from './components/admin/home/home.component';
-
 import { NewProductComponent } from './components/admin/new-product/new-product.component';
+import { ProductDisplayComponent } from './components/admin/product-display/product-display.component';
 import { ProductListComponent } from './components/admin/product-list/product-list.component';
 import { SideNavBarComponent } from './components/admin/side-nav-bar/side-nav-bar.component';
+import { StocksComponent } from './components/admin/stocks/stocks.component';
 import { UpdateProductComponent } from './components/admin/update-product/update-product.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -61,6 +63,18 @@ const routes: Routes = [
       {
         path: 'updateProduct',
         component: UpdateProductComponent,
+      },
+      {
+        path: 'stocks',
+        component: StocksComponent,
+      },
+      {
+        path: 'productDisplay',
+        component: ProductDisplayComponent,
+      },
+      {
+        path: 'adjustStock',
+        component: AddStockComponent,
       },
     ],
   },

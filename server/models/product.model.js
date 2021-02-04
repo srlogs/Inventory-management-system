@@ -31,7 +31,7 @@ Product.create = (newProduct, result) => {
 
     tableCreation();
 
-    query = "INSERT INTO products (title, summary, cost, discount, gst) VALUES ($1, $2, $3, $4, $5) RETURNING id";
+    var query = "INSERT INTO products (title, summary, cost, discount, gst) VALUES ($1, $2, $3, $4, $5) RETURNING id";
     sql.query(query, [newProduct.title, newProduct.summary, newProduct.cost, newProduct.discount, newProduct.gst], (err, response) => {
         if (err) {
             throw err;
@@ -66,6 +66,21 @@ Product.findAll = (result) => {
 
     var query = "SELECT * FROM products";
     sql.query(query, (err, response) => {
+        if (err) {
+            throw err;
+        }
+        result(null, response.rows);
+    });
+}
+
+/**
+ *  Get single product data
+ */
+Product.findOne = (productId, result) => {
+    tableCreation();
+
+    var query = "SELECT * FROM products WHERE id = $1";
+    sql.query(query, [productId], (err, response) => {
         if (err) {
             throw err;
         }

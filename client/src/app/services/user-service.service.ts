@@ -126,6 +126,42 @@ export class UserServiceService {
   }
 
   /**
+   * Get single product
+   */
+  getSingleProduct(data: any): Observable<any> {
+    return this.http.get(`http://localhost:3000/api/getProduct/${data}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
+   * Get stock data of the product
+   */
+  getOneProductStock(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/api/getStock', data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
+   * Add stock data
+   */
+  addStockData(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/api/addStock', data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
+   * Update stock data
+   */
+  updateStockData(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/api/updateStock', data, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  /**
    * Ending the session by removing the accessToken
    */
   logout() {

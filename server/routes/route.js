@@ -6,6 +6,7 @@ const product_controller = require('../controllers/product.controller');
 const middleware = require('../middleware/index');
 const auth_controller = require('../controllers/auth.controller');
 const order_controller = require('../controllers/order.controller');
+const stock_controller = require('../controllers/stock.controller');
 
 
 
@@ -60,6 +61,11 @@ router.delete('/product/:productId', middleware.authJwt.validate, middleware.ver
 router.get('/getProducts', middleware.authJwt.validate, product_controller.findAll);
 
 /**
+ *  Get single product data - (products)
+ */
+router.get('/getProduct/:productId', middleware.authJwt.validate, product_controller.findOne);
+
+/**
  *  Update products - (products)
  */
 router.post('/updateProduct', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.update);
@@ -78,6 +84,21 @@ router.post('/addOrder', middleware.authJwt.validate, order_controller.create);
  *  Cancel orders
  */
 router.delete('/order/:orderId', middleware.authJwt.validate, order_controller.delete);
+
+/**
+ *  Add stocks
+ */
+router.post('/addStock', middleware.authJwt.validate, middleware.verifyRole.isAdmin, stock_controller.create);
+
+/**
+ *  get product stock data
+ */
+router.post('/getStock', middleware.authJwt.validate, middleware.verifyRole.isAdmin, stock_controller.getOneStock);
+
+/**
+ *  update product stock data
+ */
+router.post('/updateStock', middleware.authJwt.validate, middleware.verifyRole.isAdmin, stock_controller.updateStock);
 
 
 module.exports = router;

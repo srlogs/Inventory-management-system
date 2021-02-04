@@ -1,0 +1,22 @@
+.title-wrapper label {
+  font-size: 25px;
+}
+
+input[type=number],
+input[type=date] {
+  max-width: 50%;
+}
+
+.date-field {
+  pointer-events: none;
+}
+
+.mat-form-field {
+  margin-top: 0px;
+  font-size: 20px;
+}
+
+
+input:focus {
+  outline: none;
+}

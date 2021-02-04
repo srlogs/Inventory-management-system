@@ -17,22 +17,21 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col"></th>
+        <th scope="col">#</th>
         <th scope="col">Name</th>
         <th scope="col">Cost</th>
         <th scope="col">Discount</th>
         <th scope="col">gst</th>
-        <th scope="col">Update product</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of productData">
-        <th scope="row"><input type="checkbox" name="productDetails" (click)="chooseProducts(product, $event)"></th>
+      <tr *ngFor="let product of productData" (click)="onClick(product)">
+        <th scope="row"><input type="checkbox" name="productDetails"
+            (click)="$event.stopPropagation();chooseProducts(product, $event)"></th>
         <td>{{product.title}}</td>
         <td> {{ product.cost }} </td>
-        <td> {{ product.discount }} </td>
-        <td> {{ product.gst }} </td>
-        <td class="button-col"><button class="button-update" (click)="updateProduct(product)">Update</button></td>
+        <td> {{ product.discount }} % </td>
+        <td> {{ product.gst }} % </td>
       </tr>
     </tbody>
   </table>

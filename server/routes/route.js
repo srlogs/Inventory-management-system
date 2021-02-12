@@ -11,92 +11,92 @@ const stock_controller = require('../controllers/stock.controller');
 
 
 /**
- *  Creating new user - (Delivery partner)
+ *  1. Creating new user - (Delivery partner)
  */
 router.post('/newUser', middleware.verifySignUp.checkDuplicateEmail, user_controller.create);
 
 /**
- *  Authenticate user for login - (Delivery partner)
+ *  2. Authenticate user for login - (Delivery partner)
  */
 router.post('/authenticate', auth_controller.authenticate);
 
 /**
- *  Get all users - (Delivery partner)
+ *  3. Get all users - (Delivery partner)
  */
 router.get('/getUsers', middleware.authJwt.validate, middleware.verifyRole.isAdmin, user_controller.getAll);
 
 /**
- *  Remove user - (Delivery partner)
+ *  4. Remove user - (Delivery partner)
  */
 router.delete('/user/:userId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, user_controller.delete);
 
 /**
- *  Adding customers - (Shops)
+ *  5. Adding customers - (Shops)
  */
 router.post('/addCustomer', middleware.authJwt.validate, customer_controller.create);
 
 /**
- *  Remove customer - (Shops)
+ *  6. Remove customer - (Shops)
  */
 router.delete('/customer/:customerId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, customer_controller.delete);
 
 /**
- *  Get all customers - (Shops)
+ *  7. Get all customers - (Shops)
  */
 router.get('/getCustomers', middleware.authJwt.validate, middleware.verifyRole.checkForDeliveryPartner, customer_controller.getAll);
 
 /**
- *  Adding new products - (products)
+ *  8. Adding new products - (products)
  */
 router.post('/addProduct', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.create);
 
 /**
- *  Remove products - (products)
+ *  9. Remove products - (products)
  */
 router.delete('/product/:productId', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.delete);
 
 /**
- *  Get products - (products)
+ *  10. Get products - (products)
  */
 router.get('/getProducts', middleware.authJwt.validate, product_controller.findAll);
 
 /**
- *  Get single product data - (products)
+ *  11. Get single product data - (products)
  */
 router.get('/getProduct/:productId', middleware.authJwt.validate, product_controller.findOne);
 
 /**
- *  Update products - (products)
+ *  12. Update products - (products)
  */
 router.post('/updateProduct', middleware.authJwt.validate, middleware.verifyRole.isAdmin, product_controller.update);
 
 /**
- *  Get units - (units for products)
+ *  13. Get units - (units for products)
  */
 router.get('/getUnits', middleware.authJwt.validate, product_controller.findUnits);
 
 /**
- *  Make orders
+ *  14. Make orders
  */
 router.post('/addOrder', middleware.authJwt.validate, order_controller.create);
 
 /**
- *  Cancel orders
+ *  15. Cancel orders
  */
 router.delete('/order/:orderId', middleware.authJwt.validate, order_controller.delete);
 
 /**
- *  Add stocks
+ *  16. Add stocks
  */
 router.post('/addStock', middleware.authJwt.validate, middleware.verifyRole.isAdmin, stock_controller.create);
 
 /**
- *  get product stock data
+ *  17. get product stock data
  */
 router.post('/getStock', middleware.authJwt.validate, middleware.verifyRole.isAdmin, stock_controller.getOneStock);
 
 /**
- *  update product stock data
+ *  18. update product stock data
  */
 router.post('/updateStock', middleware.authJwt.validate, middleware.verifyRole.isAdmin, stock_controller.updateStock);
 

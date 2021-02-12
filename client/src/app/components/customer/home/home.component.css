@@ -1,0 +1,83 @@
+.img-container {
+  position: absolute;
+  left: 0px;
+  width: 25%;
+}
+
+.prod-container {
+  position: absolute;
+  right: 0px;
+  width: 80%;
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-wrapper {
+  width: 70%;
+  height: 10rem;
+
+}
+
+.card-wrapper {
+  max-width: 95%;
+  margin: 0 auto;
+  margin-top: 5px;
+  /* max-height: 13rem; */
+}
+
+.card {
+  min-height: 10rem;
+  border-radius: 0px;
+  background-color: whitesmoke;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.label-text {
+  font-size: 15px;
+  color: gray;
+}
+
+
+.body-wrapper {
+  margin-top: 53px;
+  background-color: whitesmoke;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow: auto;
+}
+
+.dashed-cost {
+  text-decoration: line-through;
+  margin-left: 3px;
+  font-size: 12px;
+}
+
+.cost-color {
+  color: brown;
+  font-size: 16px;
+}
+
+.save-edit {
+  margin-left: 5px;
+  font-weight: 400;
+}
+
+.card-title:hover {
+  color: rgb(211, 44, 44);
+  transition: 0.5s;
+}
+
+.img-wrapper img:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  transition: 0.5s;
+}

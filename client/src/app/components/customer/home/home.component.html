@@ -1,1 +1,48 @@
-<p>home works!</p>
+<div class="body-wrapper">
+  <app-navbar></app-navbar>
+  <div class="content-wrapper">
+    <div *ngFor="let product of productData">
+      <div class="card-wrapper">
+        <div class="card">
+          <div class="img-container">
+            <div class="img-wrapper">
+              <img src="assets/aaron-burden-134268-unsplash.jpg" (click)="productInfo(product)" class="effect8">
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="prod-container">
+                <div class="card-title">
+                  <span (click)="productInfo(product)">{{product.title}}</span>
+                </div>
+                <div class="card-text label-text">
+                  <label>Description:</label>
+                </div>
+                <div class="card-text">
+                  <span> {{product.summary}} </span>
+                </div>
+                <div *ngIf="product.discount == 0">
+                  <div class="card-text">
+                    <span>Cost : <label class="cost-color">₹{{product.cost}}</label> </span>
+                  </div>
+                </div>
+                <div *ngIf="product.discount != 0">
+                  <div class="card-text">
+                    <span>Cost : <label
+                        class="cost-color">₹{{product.cost - (product.cost * (product.discount / 100))}}</label></span>
+                    <span class="dashed-cost">₹{{product.cost}}</span>
+                    <span class="save-edit">Save :
+                      {{product.cost - (product.cost - (product.cost * (product.discount / 100))) | number}}</span>
+                  </div>
+                  <div class="card-text">
+                    <span>Discount : {{product.discount}}%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

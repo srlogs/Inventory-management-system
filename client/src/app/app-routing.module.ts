@@ -5,13 +5,13 @@ import { AddStockComponent } from './components/admin/add-stock/add-stock.compon
 import { CustomersComponent } from './components/admin/customers/customers.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { DeliveryPartnerComponent } from './components/admin/delivery-partner/delivery-partner.component';
-import { HomeComponent } from './components/admin/home/home.component';
 import { NewProductComponent } from './components/admin/new-product/new-product.component';
 import { ProductDisplayComponent } from './components/admin/product-display/product-display.component';
 import { ProductListComponent } from './components/admin/product-list/product-list.component';
 import { SideNavBarComponent } from './components/admin/side-nav-bar/side-nav-bar.component';
 import { StocksComponent } from './components/admin/stocks/stocks.component';
 import { UpdateProductComponent } from './components/admin/update-product/update-product.component';
+import { HomeComponent } from './components/customer/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 
@@ -23,10 +23,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent,
-  },
-  {
-    path: 'admin/home',
-    component: HomeComponent,
   },
   {
     path: 'admin/sidenav',
@@ -77,6 +73,10 @@ const routes: Routes = [
         component: AddStockComponent,
       },
     ],
+  },
+  {
+    path: 'customer/home',
+    component: HomeComponent,
   },
 ];
 

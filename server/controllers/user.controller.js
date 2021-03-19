@@ -69,7 +69,6 @@ exports.create = (req, res) => {
                 } else {
                     res.send(result);
                 }
-
             }
 
         });

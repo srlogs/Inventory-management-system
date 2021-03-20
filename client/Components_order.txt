@@ -1,0 +1,10 @@
+Components_order.txt
+
+Common Components
+    1. Side Bar
+    2. Nav Bar
+    
+Landing Page Components
+    1. Landing card
+    2. Sign in card
+    3. Sign up card

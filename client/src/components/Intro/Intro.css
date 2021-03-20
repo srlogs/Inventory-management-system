@@ -1,0 +1,26 @@
+    .MainCard {
+        width: 900px;
+        height: 450px;
+        margin: 0 auto;
+        /* margin-top: 200px; */
+    }
+    h2{
+        font-weight: 50000;
+        font-style: italic;
+        font-family: Blippo, fantasy;
+    }
+    .dashboardimg{
+        width: 800px;
+        height: 300px;   
+    }
+    .logo{
+        width: 200px;
+        height: 35px;
+        margin-bottom: 10px;
+        margin-right: 300px;
+    }
+    h4{
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+  

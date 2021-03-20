@@ -1,0 +1,19 @@
+
+    .SignUpCard {
+        width: 400px;
+        height: 420px;
+        margin: 0 auto;
+        margin-top: 200px;
+    }
+    .email-null{
+        color: red;
+        font-size: 75%;
+    }
+    .email-proper{
+        color: red;
+        font-size: 75%;
+    }
+    .pass-empty{
+        color: red;
+        font-size: 75%;
+    }
